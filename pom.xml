@@ -1,0 +1,183 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<!-- 
+	Written by Louis LeBlanc
+	For Homework Assignment 1
+	Expert Software Development in Java
+	Brandeis University
+	Instructed by Vitaly Yurik
+	-->
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>edu.brandeis.rseg105.spring.jdbc.app</groupId>
+	<artifactId>SpringHibernate</artifactId>
+	<packaging>jar</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>SpringData</name>
+	<description>RSEG105, project1 part 4</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<spring.version>5.0.2.RELEASE</spring.version>
+		<slf4j.log4j.version>1.7.6</slf4j.log4j.version>
+		<commons.dbcp2.version>2.2.0</commons.dbcp2.version>
+		<mysql.client.version>5.1.29</mysql.client.version>
+		<hibernate.entitymanager.version>5.2.12.Final</hibernate.entitymanager.version>
+		<java.version>1.8</java.version>
+		<commons.dbcp2.version>2.2.0</commons.dbcp2.version>
+		<spring.data.jpa.version>2.0.2.RELEASE</spring.data.jpa.version>
+		<google.guava.version>19.0</google.guava.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.log4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-dbcp2</artifactId>
+			<version>${commons.dbcp2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.client.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>${hibernate.entitymanager.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>${spring.data.jpa.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${google.guava.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.7.0</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>3.1.0</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<id>find-all-books</id>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<transformers>
+								<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+									<resource>META-INF/spring.handlers</resource>
+								</transformer>
+								<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+									<resource>META-INF/spring.schemas</resource>
+								</transformer>
+								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<mainClass>edu.brandeis.rseg105.data_jpa2.app.FindAllBooks</mainClass>
+								</transformer>
+							</transformers>
+							<finalName>find-all-books</finalName>
+						</configuration>
+					</execution>
+
+					<execution>
+						<phase>package</phase>
+						<id>find-books-authors-categories-by-id</id>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<transformers>
+								<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+									<resource>META-INF/spring.handlers</resource>
+								</transformer>
+								<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+									<resource>META-INF/spring.schemas</resource>
+								</transformer>
+								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<mainClass>edu.brandeis.rseg105.data_jpa2.app.FindBookWithAuthorsCategoryById</mainClass>
+								</transformer>
+							</transformers>
+							<finalName>find-books-authors-categories-by-id</finalName>
+						</configuration>
+					</execution>
+
+					<execution>
+						<phase>package</phase>
+						<id>create-book-with-author</id>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<transformers>
+								<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+									<resource>META-INF/spring.handlers</resource>
+								</transformer>
+								<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+									<resource>META-INF/spring.schemas</resource>
+								</transformer>
+								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<mainClass>edu.brandeis.rseg105.data_jpa2.app.CreateBookWithAuthor</mainClass>
+								</transformer>
+							</transformers>
+							<finalName>create-book-with-author</finalName>
+						</configuration>
+					</execution>
+
+					<execution>
+						<phase>package</phase>
+						<id>delete-book</id>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<transformers>
+								<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+									<resource>META-INF/spring.handlers</resource>
+								</transformer>
+								<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+									<resource>META-INF/spring.schemas</resource>
+								</transformer>
+								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<mainClass>edu.brandeis.rseg105.data_jpa2.app.DeleteBookWithAuthor</mainClass>
+								</transformer>
+							</transformers>
+							<finalName>delete-book</finalName>
+						</configuration>
+					</execution>
+
+				</executions>
+			</plugin>
+
+		</plugins>
+	</build>
+</project>
+
