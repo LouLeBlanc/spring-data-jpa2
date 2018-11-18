@@ -31,24 +31,6 @@ import javax.persistence.Version;
 
 @Entity
 @Table(name="book")
-@NamedQueries({
-	@NamedQuery(name=Book.FIND_BOOK_WITH_AUTHOR_CATEGORY_BY_ID,
-			query="select distinct b from Book b " +
-				"left join fetch b.category c " +
-				"left join fetch b.authors a " +
-				"where b.id = :id"),
-	@NamedQuery(name=Book.FIND_BOOKS_BY_AUTHOR_ID,
-			query="select distinct b from Book b " +
-				"left join fetch b.category c " +
-				"left join fetch b.authors a " +
-				"where a.id = :id"),
-	@NamedQuery(name=Book.FIND_ALL_WITH_AUTHOR_CATEGORY,
-			query="select distinct b from Book b " +
-				"left join fetch b.category c " +
-				"left join fetch b.authors a"),
-	@NamedQuery(name=Book.FIND_ALL_BOOKS,
-			query="select distinct b from Book b ")
-})
 @SqlResultSetMapping(
 		name="bookResult",
 		entities=@EntityResult(entityClass=Book.class)
@@ -65,15 +47,6 @@ public class Book implements Serializable {
 	 * Implementing Serializable
 	 */
 	private static final long serialVersionUID = -1606836550546687511L;
-
-	public static final String FIND_BOOK_WITH_AUTHOR_CATEGORY_BY_ID =
-			"Book.findBookWithAuthorCategoryById";
-	public static final String FIND_BOOKS_BY_AUTHOR_ID =
-			"Book.findBooksByAuthorId";
-	public static final String FIND_ALL_WITH_AUTHOR_CATEGORY =
-			"Book.findAllWithAuthorCategory";
-	public static final String FIND_ALL_BOOKS =
-			"Book.FindAllBooks";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
