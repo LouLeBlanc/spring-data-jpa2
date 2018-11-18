@@ -12,10 +12,10 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>edu.brandeis.rseg105.spring.jdbc.app</groupId>
-	<artifactId>SpringHibernate</artifactId>
+	<artifactId>SpringDataJPA</artifactId>
 	<packaging>jar</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>SpringData</name>
+	<name>SpringDataJPA</name>
 	<description>RSEG105, project1 part 4</description>
 
 	<properties>
