@@ -8,7 +8,6 @@
 
 package edu.brandeis.rseg105.data_jpa2.service;
 
-//import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import edu.brandeis.rseg105.data_jpa2.domain.Book;
