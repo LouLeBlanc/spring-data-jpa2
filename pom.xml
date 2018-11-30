@@ -16,7 +16,7 @@
 	<packaging>jar</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>SpringDataJPA</name>
-	<description>RSEG105, project1 part 4</description>
+	<description>RSEG105, project2 part 2</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
