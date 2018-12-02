@@ -49,8 +49,8 @@ public class FindAllBooks {
 	public static void listBooks(List<Book> books) {
 		books.forEach(book -> {
 			logger.info(book.toString());
-				logger.info("-----------------");
-			});
+			logger.info("-----------------");
+		});
 	}
 
 }
